@@ -21,6 +21,9 @@ provides a zoomed view of the area around your mouse cursor.
 First, ensure you have the necessary development libraries installed:
 
 ```sh
+# On Void Linux
+sudo xbps-install -S libX11-devel libXfixes-devel libXrender-devel
+
 # On Debian/Ubuntu
 sudo apt-get install libx11-dev libxfixes-dev libxrender-dev
 
