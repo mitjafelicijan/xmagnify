@@ -79,15 +79,15 @@ void init_x11() {
 
 void create_zoom_window() {
 	zoom_window = XCreateSimpleWindow(
-			display,
-			RootWindow(display, screen),
-			0, 0,
-			window_size, window_size,
-			1,
-			BlackPixel(display, screen),
-			WhitePixel(display, screen)
-			);
-	XStoreName(display, zoom_window, "X11 Zoom Tool");
+		display,
+		RootWindow(display, screen),
+		0, 0,
+		window_size, window_size,
+		1,
+		BlackPixel(display, screen),
+		WhitePixel(display, screen)
+	);
+	XStoreName(display, zoom_window, "Xmagnify");
 	XSelectInput(display, zoom_window, KeyPressMask);
 	XMapWindow(display, zoom_window);
 }
@@ -121,13 +121,13 @@ void update_zoom() {
 	clamp_coordinates(&capture_x, &capture_y, capture_width, capture_height);
 
 	XImage *src_image = XGetImage(
-			display,
-			RootWindow(display, screen),
-			capture_x, capture_y,
-			capture_width, capture_height,
-			AllPlanes,
-			ZPixmap
-			);
+		display,
+		RootWindow(display, screen),
+		capture_x, capture_y,
+		capture_width, capture_height,
+		AllPlanes,
+		ZPixmap
+	);
 
 	if (!src_image) {
 		fprintf(stderr, "XGetImage failed\n");
@@ -136,16 +136,16 @@ void update_zoom() {
 	}
 
 	XImage *dest_image = XCreateImage(
-			display,
-			DefaultVisual(display, screen),
-			DefaultDepth(display, screen),
-			ZPixmap,
-			0,
-			malloc(window_size * window_size * 4),
-			window_size, window_size,
-			32,
-			0
-			);
+		display,
+		DefaultVisual(display, screen),
+		DefaultDepth(display, screen),
+		ZPixmap,
+		0,
+		malloc(window_size * window_size * 4),
+		window_size, window_size,
+		32,
+		0
+	);
 
 	for (int y = 0; y < window_size; y++) {
 		for (int x = 0; x < window_size; x++) {
@@ -156,15 +156,7 @@ void update_zoom() {
 	}
 
 	GC gc = XCreateGC(display, zoom_window, 0, NULL);
-	XPutImage(
-			display,
-			zoom_window,
-			gc,
-			dest_image,
-			0, 0,
-			0, 0,
-			window_size, window_size
-			);
+	XPutImage(display, zoom_window, gc, dest_image, 0, 0, 0, 0, window_size, window_size);
 
 	XFreeGC(display, gc);
 	XDestroyImage(src_image);
