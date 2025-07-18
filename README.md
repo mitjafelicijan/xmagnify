@@ -97,6 +97,6 @@ gdb ./xmagnify
 
 ## License
 
-[makext](https://github.com/mitjafelicijan/xmagnfy) was written by [Mitja
+[xmagnify](https://github.com/mitjafelicijan/xmagnify) was written by [Mitja
 Felicijan](https://mitjafelicijan.com) and is released under the BSD
 two-clause license, see the LICENSE file for more information.
