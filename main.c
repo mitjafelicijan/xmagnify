@@ -1,11 +1,12 @@
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
-#include <X11/extensions/Xfixes.h>
-#include <X11/keysym.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <getopt.h>
+
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
+#include <X11/extensions/Xfixes.h>
+#include <X11/keysym.h>
 
 #define DEFAULT_ZOOM_LEVEL 2
 #define DEFAULT_WINDOW_SIZE 600
